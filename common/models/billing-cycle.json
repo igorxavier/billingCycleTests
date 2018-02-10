@@ -1,0 +1,45 @@
+{
+  "name": "billingCycle",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "month": {
+      "type": "number",
+      "required": true
+    },
+    "year": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "credits": {
+      "type": "embedsMany",
+      "model": "credit",
+      "foreignKey": "",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    },
+    "debts": {
+      "type": "embedsMany",
+      "model": "debt",
+      "foreignKey": "",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
