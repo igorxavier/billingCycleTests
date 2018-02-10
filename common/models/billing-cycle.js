@@ -33,6 +33,6 @@ module.exports = function(Billingcycle) {
   });
 
   Billingcycle.validatesPresenceOf('name',
-        {message: 'Campo Obrigatório'}
+        {message: 'Campo De Preenchimento Obrigatório'}
     );
 };
