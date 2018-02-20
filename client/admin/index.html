@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     Administração
+
+    <script>
+        const urlToChangeStream = '/api/billingCycles/change-stream';
+        let es;
+        let timeout;
+        function createTimeout(es) {
+            timeout = setTimeout(() => {
+                es.close();
+                es = createEventSource();
+            }, 15 * 1000);
+        }
+
+        function createEventSource() {
+            try {
+                es = new EventSource(urlToChangeStream);
+            } catch (err) {
+                console.log(err); // the change object
+
+            }
+            clearTimeout(timeout);
+            createTimeout(es);
+            es.addEventListener('data', function (e) {
+                var data = JSON.parse(e.data);
+                console.log(data); // the change object
+            });
+        }
+        createEventSource();
+    </script>
 </body>
+
 </html>
